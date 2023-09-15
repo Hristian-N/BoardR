@@ -6,7 +6,7 @@ class BoardItem
 
     public BoardItem(string title, DateTime dueDate)
     {
-        if(title.IsNullOrEmpty(title))
+        if(string.IsNullOrEmpty(title))
             throw new ArgumentNullException("Title cannot be null or empty");
         if (title.Length > 30 || title.Length < 5)
             throw new ArgumentException("Title must be between 5 and 30 characters long");
@@ -21,13 +21,13 @@ class BoardItem
     public void RevertStatus()
     {
         if (this.status != Status.Open)
-            return this.status--;
+            this.status--;
     }
 
     public void AdvanceStatus()
     {
         if (this.status != Status.Verified)
-            return this.status++;
+            this.status++;
     }
 
     public string ViewInfo()
