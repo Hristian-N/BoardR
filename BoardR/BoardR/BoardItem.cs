@@ -6,8 +6,15 @@ class BoardItem
 
     public BoardItem(string title, DateTime dueDate)
     {
-        this.title = title;
+        if(title.IsNullOrEmpty(title))
+            throw new ArgumentNullException("Title cannot be null or empty");
+        if (title.Length > 30 || title.Length < 5)
+            throw new ArgumentException("Title must be between 5 and 30 characters long");
+        if (dueDate < DateTime.Now)
+            throw new ArgumentException("Due date cannot cannot be in the past");
+        
         this.dueDate = dueDate;
+        this.title = title;
         this.status = Status.Open;
     }
 
