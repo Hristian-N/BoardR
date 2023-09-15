@@ -18,20 +18,16 @@ class BoardItem
         this.status = Status.Open;
     }
 
-    public Status RevertStatus()
+    public void RevertStatus()
     {
-        if (status != Status.Open)
+        if (this.status != Status.Open)
             return this.status--;
-
-        return Status.Open;
     }
 
-    public Status AdvanceStatus()
+    public void AdvanceStatus()
     {
-        if (status != Status.Verified)
+        if (this.status != Status.Verified)
             return this.status++;
-
-        return Status.Verified;
     }
 
     public string ViewInfo()
