@@ -1,18 +1,11 @@
-﻿var item = new BoardItem("Refactor this mess", DateTime.Now.AddDays(2));
-item.AdvanceStatus();
-var anotherItem = new BoardItem("Encrypt user data", DateTime.Now.AddDays(10));
+﻿var item = new BoardItem("Rewrite everything", DateTime.Now.AddDays(1));
 
-Board.items.Add(item);
-Board.items.Add(anotherItem);
+// compilation error if you uncomment the next line:
+// item.title = "Rewrite everything immediately!!!";
 
-foreach (var boardItem in Board.items)
-{
-    boardItem.AdvanceStatus();
-}
+item.Title = "Rewrite everything"; // property 'set'-ing
+Console.WriteLine(item.Title); // property 'get'-ing
 
-foreach (var boardItem in Board.items)
-{
-    Console.WriteLine(boardItem.ViewInfo());
-}
+item.Title = "Huh?"; // Exception thrown: Please provide a title with length between 5 and 30 chars
 
 Console.ReadLine(); // to pause console and not exit
