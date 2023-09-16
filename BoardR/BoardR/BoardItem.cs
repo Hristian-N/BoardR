@@ -2,21 +2,58 @@ class BoardItem
 {
     string title;
     DateTime dueDate;
-    public Status status;
+    Status status;
 
     public BoardItem(string title, DateTime dueDate)
     {
-        if(string.IsNullOrEmpty(title))
-            throw new ArgumentNullException("Title cannot be null or empty");
-        if (title.Length > 30 || title.Length < 5)
-            throw new ArgumentException("Title must be between 5 and 30 characters long");
-        if (dueDate < DateTime.Now)
-            throw new ArgumentException("Due date cannot cannot be in the past");
-        
-        this.dueDate = dueDate;
-        this.title = title;
-        this.status = Status.Open;
+        Title = title;
+        Duedate = dueDate; 
+        Status = Status.Open;
     }
+
+    public string Title
+    {
+        get
+        {
+            return this.title;
+        }
+        set
+        {
+            if (string.IsNullOrEmpty(value))
+                throw new ArgumentNullException("Title cannot be null or empty");
+            if (value.Length > 30 || value.Length < 5)
+                throw new ArgumentException("Title must be between 5 and 30 characters long");
+
+            this.title = value;
+        }
+    }
+
+    public DateTime Duedate
+    {
+        get
+        {
+            return this.dueDate;
+        }
+        set
+        {
+            if (value < DateTime.Now)
+                throw new ArgumentException("Due date cannot cannot be in the past");
+
+            this.dueDate = value;
+        }
+    }
+
+    public Status Status
+    {
+        get
+        {
+            return this.status;
+        }
+        set
+        {
+
+        }
+    } 
 
     public void RevertStatus()
     {
