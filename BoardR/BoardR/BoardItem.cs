@@ -7,8 +7,8 @@ class BoardItem
     public BoardItem(string title, DateTime dueDate)
     {
         Title = title;
-        Duedate = dueDate; 
-        Status = Status.Open;
+        Duedate = dueDate;
+        this.status = Status.Open;
     }
 
     public string Title
@@ -48,10 +48,6 @@ class BoardItem
         get
         {
             return this.status;
-        }
-        set
-        {
-
         }
     } 
 
