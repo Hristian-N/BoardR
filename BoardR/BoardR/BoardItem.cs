@@ -1,5 +1,7 @@
 using System.Text;
 
+// This is a comment
+
 class BoardItem
 {
     string title;
@@ -57,7 +59,7 @@ class BoardItem
     public Status Status
     {
         get { return this.status; }
-    } 
+    }
 
     public void RevertStatus()
     {
@@ -68,12 +70,12 @@ class BoardItem
             logs.Add(log);
             this.status--;
         }
-            
+
         else
         {
             EventLog log = new EventLog("Can't revert, already at Open");
             logs.Add(log);
-        } 
+        }
     }
 
     public void AdvanceStatus()
@@ -105,7 +107,7 @@ class BoardItem
         logs.RemoveAt(0);
 
         StringBuilder stringBuilder = new StringBuilder();
-        foreach(EventLog log in logs)
+        foreach (EventLog log in logs)
             stringBuilder.Append(log.ViewInfo() + '\n');
 
         return stringBuilder.ToString();
