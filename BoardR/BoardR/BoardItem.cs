@@ -1,7 +1,5 @@
 using System.Text;
 
-// This is a comment
-
 class BoardItem
 {
     string title;
