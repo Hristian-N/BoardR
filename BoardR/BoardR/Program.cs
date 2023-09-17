@@ -1,10 +1,18 @@
-﻿var item = new BoardItem("Rewrite everything", DateTime.Now.AddDays(1));
+﻿var item = new BoardItem("Refactor this mess", DateTime.Now.AddDays(2));
+item.DueDate = item.DueDate.AddYears(2);
+item.Title = "Not that important";
+item.RevertStatus();
+item.AdvanceStatus();
+item.RevertStatus();
 
-// compilation error if you uncomment the next line:
-// item.title = "Rewrite everything immediately!!!";
+Console.WriteLine(item.ViewHistory());
 
-item.Title = "Rewrite everything immediately"; // property 'set'-ing
-Console.WriteLine(item.Title); // property 'get'-ing
+Console.WriteLine("\n--------------\n");
 
-Console.ReadLine();
-// item.Title = "Huh?"; // Exception thrown: Please provide a title with length between 5 and 30 chars
+var anotherItem = new BoardItem("Don't refactor anything", DateTime.Now.AddYears(10));
+anotherItem.AdvanceStatus();
+anotherItem.AdvanceStatus();
+anotherItem.AdvanceStatus();
+anotherItem.AdvanceStatus();
+anotherItem.AdvanceStatus();
+Console.WriteLine(anotherItem.ViewHistory());
