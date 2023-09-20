@@ -6,6 +6,7 @@ class BoardItem
     DateTime dueDate;
     Status status;
     List<EventLog> logs = new List<EventLog>();
+    bool isOnce = True;
 
     public BoardItem(string title, DateTime dueDate)
     {
@@ -100,10 +101,13 @@ class BoardItem
 
     public string ViewHistory()
     {
-
-        logs.RemoveAt(0);
-        logs.RemoveAt(0);
-
+        if (isOnce)
+        {
+            logs.RemoveAt(0);
+            logs.RemoveAt(0);
+            isOnce = False;
+        }    
+        
         StringBuilder stringBuilder = new StringBuilder();
         foreach (EventLog log in logs)
             stringBuilder.Append(log.ViewInfo() + '\n');
