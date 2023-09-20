@@ -2,21 +2,25 @@ using System.Text;
 
 public class BoardItem
 {
-    string title;
-    DateTime dueDate;
+    private string title;
+    private DateTime dueDate;
     protected Status status;
     protected List<EventLog> logs = new List<EventLog>();
-    bool isOnce = true;
+    private bool isOnce = true;
 
-    public BoardItem(string title, DateTime dueDate, bool skipLog)
+    public BoardItem(string title, DateTime dueDate)
     {
-
         Title = title;
         DueDate = dueDate;
         this.status = Status.Open;
 
-        if (!skipLog)
-            AddLog(new EventLog($"Item created: {this.ViewInfo()}"));
+        AddLog(new EventLog($"Item created: {this.ViewInfo()}"));
+    }
+    public BoardItem(string title, DateTime dueDate, Status initalStatus)
+    {
+        Title = title;
+        DueDate = dueDate;
+        this.status = initalStatus;
     }
 
     public string Title

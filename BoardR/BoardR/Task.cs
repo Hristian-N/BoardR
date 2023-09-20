@@ -8,10 +8,9 @@ public class Task : BoardItem
     private string assignee;
     bool isLocked = true;
 
-    public Task(string title, string assignee, DateTime dueDate) : base(title, dueDate, true)
+    public Task(string title, string assignee, DateTime dueDate) : base(title, dueDate, Status.Todo)
     {
         Assignee = assignee;
-        this.status = Status.Todo;
 
         AddLog(new EventLog($"Created Task: {this.ViewInfo()}"));
     }
