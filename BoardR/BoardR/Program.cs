@@ -1,18 +1,7 @@
-﻿var item = new BoardItem("Refactor this mess", DateTime.Now.AddDays(2));
-item.DueDate = item.DueDate.AddYears(2);
-item.Title = "Not that important";
-item.RevertStatus();
-item.AdvanceStatus();
-item.RevertStatus();
+﻿var tomorrow = DateTime.Now.AddDays(1);
+var issue = new Issue("App flow tests?", "We need to test the App!", tomorrow);
+var task = new Task("Test the application flow", "Peter", tomorrow);
 
-Console.WriteLine(item.ViewHistory());
-
-Console.WriteLine("\n--------------\n");
-
-var anotherItem = new BoardItem("Don't refactor anything", DateTime.Now.AddYears(10));
-anotherItem.AdvanceStatus();
-anotherItem.AdvanceStatus();
-anotherItem.AdvanceStatus();
-anotherItem.AdvanceStatus();
-anotherItem.AdvanceStatus();
-Console.WriteLine(anotherItem.ViewHistory());
+Board.AddItem(issue);
+Board.AddItem(task);
+Console.WriteLine(Board.TotalItems); // 2
