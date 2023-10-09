@@ -28,14 +28,6 @@ namespace Boarder.Models
             }
         }
 
-        public override string ViewInfo()
-        {
-            var baseInfo = base.ViewInfo();
-
-            // output info about the Type, the baseInfo, the Assignee
-            return $"{baseInfo} Assignee: {Assignee}";
-        }
-
         public override void AdvanceStatus()
         {
             if (this.Status != Status.Verified)
@@ -62,6 +54,11 @@ namespace Boarder.Models
             {
                 this.AddEventLog("Task status already Todo");
             }
+        }
+
+        public override string ViewInfo()
+        {
+            return $"Task: {base.ViewInfo()} Assignee: {this.Assignee}";
         }
 
         private void EnsureValidAssignee(string value)

@@ -20,19 +20,11 @@ namespace Boarder.Models
             {
                 this.Status = Status.Verified;
                 this.AddEventLog("Issue status set to Verified");
-            }
+            } 
             else
             {
                 this.AddEventLog("Issue status already Verified");
             }
-        }
-
-        public override string ViewInfo()
-        {
-            var baseInfo = base.ViewInfo();
-
-            // output info about the Type, the baseInfo, the Assignee
-            return $"{baseInfo} Description: {Description}";
         }
 
         public override void RevertStatus()
@@ -46,6 +38,11 @@ namespace Boarder.Models
             {
                 this.AddEventLog("Issue status already Open");
             }
+        }
+
+        public override string ViewInfo()
+        {
+            return $"Issue: {base.ViewInfo()} Description: {this.Description}";
         }
     }
 }
