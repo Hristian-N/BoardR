@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 
 namespace Boarder.Tests.Models
@@ -21,6 +22,15 @@ namespace Boarder.Tests.Models
             validAssignee = "TestUser";
             validDueDate = DateTime.Now.AddDays(1);
             sut = new Boarder.Models.Task(validTitle, validAssignee, validDueDate);
+        }
+
+        [TestMethod]
+        public void Task_Should_DeriveFromBoardItem()
+        {
+            var type = typeof(Boarder.Models.Task);
+            var isAssignable = typeof(BoardItem).IsAssignableFrom(type);
+
+            Assert.IsTrue(isAssignable, "Task class does not derive from BoardItem base class!");
         }
 
         [TestMethod]
@@ -113,6 +123,14 @@ namespace Boarder.Tests.Models
         }
 
         [TestMethod]
+        public void Title_ShouldSetTitleToValue_WhenValidationHasPassedSuccessfuly()
+        {
+
+            // Arrange Act & Assert
+            sut.Title = validTitle;
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException), "Please provide a non-null or empty value for Title")]
         public void Title_Should_Throw_WhenTitleIsNullOrEmpty()
         {
@@ -123,7 +141,7 @@ namespace Boarder.Tests.Models
             sut.Title = wrongTitle;
         }
 
-        [TestMethod] // Todo
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException), "Title must be more than 4 symbols")]
         public void Title_Should_Throw_WhenTitleIsIsTooShort()
         {
@@ -134,7 +152,7 @@ namespace Boarder.Tests.Models
             sut.Title = wrongTitle;
         }
 
-        [TestMethod] // Todo
+        [TestMethod]
         [ExpectedException(typeof(ArgumentException), "Title must be less than 31 symbols")]
         public void Title_Should_Throw_WhenTitleIsTooLong()
         {
@@ -143,6 +161,13 @@ namespace Boarder.Tests.Models
 
             // Act & Assert
             sut.Title = wrongTitle;
+        }
+
+        [TestMethod]
+        public void Assignee_Should_SetTitleToValue_WhenValidationHasPassed()
+        {
+            // Arrange & Act & Assert
+            sut.Assignee = validAssignee;
         }
 
         [TestMethod]
@@ -169,13 +194,21 @@ namespace Boarder.Tests.Models
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentException), "Assignee must be less than 31 symbols")]
-        public void Assignee_Should_Throw_AssigneeIsTooLong()
+        public void Assignee_ShouldThrow_AssigneeIsTooLong()
         {
             // Arrange
             string wrongAssignee = new string('a', 31);
 
             // Act & Assert
             sut.Assignee = wrongAssignee;
+        }
+
+        [TestMethod]
+        public void DueDate_Should_SetDueDateToValue_WhenValidationHasPassedSuccessfuly()
+        {
+
+            // Arrange & Act & Assert
+            sut.DueDate = validDueDate;
         }
 
         [TestMethod]
